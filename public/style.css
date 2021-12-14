@@ -1,0 +1,151 @@
+:root {
+  --main-color: #22332b;
+  --secondary-color: #e4ddaf;
+  --main-font: Garamond, Serif;
+  --secondary-font: Verdana, Arial, sans-serif;
+}
+body {
+  background-color: var(--main-color);
+  margin: 0;
+  padding: 0;
+}
+
+#pageHeader {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  text-align: center;
+  border: 1px solid var(--main-color);
+  border-radius: 0px 0px 20px 20px;
+  font-family: var(--main-font);
+}
+
+/*sample posting styling*/
+
+#sampleposting {
+  display: flex;
+  flex-direction: column;
+}
+
+.border {
+  margin: 20px;
+  border: 1px solid var(--secondary-color);
+  width: 450px;
+  height: fit-content;
+  align-self: center;
+  justify-self: center;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.formHeader {
+  color: var(--secondary-color);
+  margin: 10px;
+  font-family: var(--main-font);
+  font-weight: bold;
+  font-size: large;
+}
+
+.formLabels {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--secondary-color);
+  border-top: 1px solid var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLabel {
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  margin: 5px;
+  font-family: var(--main-font);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  border-color: transparent;
+  border-radius: 5px;
+}
+
+.inputLabel:focus {
+  outline: 3px solid var(--secondary-color);
+}
+
+label {
+  color: var(--secondary-color);
+  font-family: var(--secondary-font);
+  font-weight: 700;
+}
+
+.submitBtn {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  border-color: transparent;
+  font-family: var(--secondary-font);
+  font-weight: bold;
+}
+
+.submitBtn:focus {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  font-weight: bolder;
+}
+
+/*sampleui styling*/
+
+#sampleui {
+  display: flex;
+  flex-direction: column;
+}
+
+#sampleuiHeader {
+  text-align: center;
+  color: var(--secondary-color);
+  font-family: var(--main-font);
+}
+
+#newBookForm {
+  margin: 20px;
+  border: 1px solid var(--secondary-color);
+  width: 450px;
+  height: fit-content;
+  align-self: center;
+  justify-self: center;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#bookDetail {
+  width: fit-content;
+  height: fit-content;
+  color: var(--secondary-color);
+}
+
+.uiBtn {
+  align-self: center;
+  align-content: center;
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  width: fit-content;
+  height: 25px;
+  border-radius: 10px;
+  border-color: transparent;
+  font-family: var(--secondary-font);
+  font-weight: bold;
+}
+
+.uiBtn:focus {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  font-weight: bolder;
+}
