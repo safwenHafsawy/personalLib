@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const bookSchema = mongoose.Schema({
   title: String,
+  commentcount: Number,
   comments: [String],
 });
 

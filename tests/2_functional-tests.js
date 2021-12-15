@@ -14,7 +14,7 @@ suite("Functional Tests", function () {
     suite(
       "POST /api/books with title => create book object/expect book object",
       function () {
-        this.timeout(5000).slow(3000);
+        this.timeout(10000).slow(7000);
         const testObj = { title: "title" };
         test("Test POST /api/books with title", function (done) {
           chai

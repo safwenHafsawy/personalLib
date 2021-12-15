@@ -4,7 +4,7 @@ const createBook = (req, res) => {
   if (!req.body.hasOwnProperty("title"))
     return res.status(200).send("missing required field title");
   const { title } = req.body;
-  const book = new bookModel({ title, comments: [] });
+  const book = new bookModel({ title, commentcount: 0, comments: [] });
   book
     .save()
     .then((record) => {
@@ -21,9 +21,9 @@ const fetchAllBooks = (req, res) => {
     .then((records) => {
       const result = [];
       records.forEach((record) => {
-        let temp = { ...record._doc };
-        delete temp.__v;
-        result.push(temp);
+        let { title, _id, comments, commentcount } = record._doc;
+        commentcount = comments.length - 1;
+        result.push({ title, _id, commentcount });
       });
       res.json(result);
     })
@@ -82,11 +82,12 @@ const deleteOneBook = (req, res) => {
   const _id = req.params.id;
   bookModel
     .deleteOne({ _id })
-    .then(() => {
-      res.send("delete successful");
+    .then((result) => {
+      if (result.deletedCount === 0) return res.send("no book found");
+      return res.send("delete successful");
     })
     .catch(() => {
-      res.send("no book found");
+      return res.send("no book found");
     });
 };
 
