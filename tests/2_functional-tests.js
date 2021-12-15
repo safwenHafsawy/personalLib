@@ -107,8 +107,7 @@ suite("Functional Tests", function () {
               assert.isObject(res.body);
               assert.property(res.body, "title");
               assert.property(res.body, "_id");
-              assert.property(res.body, "comments");
-              assert.isArray(res.body.comments);
+              assert.property(res.body, "commentcount");
               done();
             });
         });
@@ -128,7 +127,7 @@ suite("Functional Tests", function () {
         });
 
         test("Test POST /api/books/[id] with comment, id not in db", function (done) {
-          this.timeout(5000).slow(3000);
+          this.timeout(10000).slow(3000);
           chai
             .request(server)
             .post(`/api/books/${invalidID}`)
@@ -165,7 +164,7 @@ suite("Functional Tests", function () {
           .end(function (err, res) {
             assert.strictEqual(err, null);
             assert.isString(res.text);
-            assert.equal(res.text, "no book found");
+            assert.equal(res.text, "no book exists");
             done();
           });
       });

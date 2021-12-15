@@ -22,7 +22,6 @@ const fetchAllBooks = (req, res) => {
       const result = [];
       records.forEach((record) => {
         let { title, _id, comments, commentcount } = record._doc;
-        commentcount = comments.length - 1;
         result.push({ title, _id, commentcount });
       });
       res.json(result);
@@ -54,15 +53,21 @@ const addComments = (req, res) => {
     return res.send("missing comment field");
   const _id = req.params.id;
   const comment = req.body.comment;
-
   bookModel
-    .findByIdAndUpdate(_id, { $push: { comments: comment } })
+    .findById(_id)
     .then((record) => {
-      res.json({
-        _id: record.id,
-        title: record.title,
-        comments: record.comments,
-      });
+      bookModel.findOneAndUpdate(
+        { _id },
+        {
+          $push: { comments: comment },
+          $set: { commentcount: record.commentcount + 1 },
+        },
+        (err, result) => {
+          if (err) return res.send("no book exists");
+          const { title, commentcount } = result;
+          res.json({ _id, title, commentcount });
+        }
+      );
     })
     .catch(() => res.send("no book exists"));
 };
@@ -83,11 +88,11 @@ const deleteOneBook = (req, res) => {
   bookModel
     .deleteOne({ _id })
     .then((result) => {
-      if (result.deletedCount === 0) return res.send("no book found");
+      if (result.deletedCount === 0) return res.send("no book exists");
       return res.send("delete successful");
     })
     .catch(() => {
-      return res.send("no book found");
+      return res.send("no book exists");
     });
 };
 
