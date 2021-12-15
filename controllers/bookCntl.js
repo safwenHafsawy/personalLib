@@ -64,12 +64,12 @@ const addComments = (req, res) => {
           const { _id, title, commentcount, comments } = resultObj;
           res.json({ _id, title, commentcount, comments });
         })
-        .catch((err) => {
-          res.send(err);
+        .catch(() => {
+          res.send("no book exists");
         });
     })
-    .catch((err) => {
-      res.send(err);
+    .catch(() => {
+      res.send("no book exists");
     });
 };
 
