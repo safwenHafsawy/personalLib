@@ -122,7 +122,7 @@ suite("Functional Tests", function () {
             .end(function (err, res) {
               assert.strictEqual(err, null);
               assert.isString(res.text);
-              assert.equal(res.text, "missing comment field");
+              assert.equal(res.text, "missing required field comment");
               assert.deepEqual(res.body, {});
               done();
             });
