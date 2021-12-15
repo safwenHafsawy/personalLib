@@ -56,20 +56,21 @@ const addComments = (req, res) => {
   bookModel
     .findById(_id)
     .then((record) => {
-      bookModel.findOneAndUpdate(
-        { _id },
-        {
-          $push: { comments: comment },
-          $set: { commentcount: record.commentcount + 1 },
-        },
-        (err, result) => {
-          if (err) return res.send("no book exists");
-          const { title, commentcount, comments } = result;
+      record.comments.push(comment);
+      record.commentcount += 1;
+      record
+        .save()
+        .then((resultObj) => {
+          const { _id, title, commentcount, comments } = resultObj;
           res.json({ _id, title, commentcount, comments });
-        }
-      );
+        })
+        .catch((err) => {
+          res.send(err);
+        });
     })
-    .catch(() => res.send("no book exists"));
+    .catch((err) => {
+      res.send(err);
+    });
 };
 
 const deleteAllBooks = (req, res) => {
