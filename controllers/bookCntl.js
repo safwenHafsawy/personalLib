@@ -50,7 +50,7 @@ const fetchOneBook = (req, res) => {
 
 const addComments = (req, res) => {
   if (!req.body.hasOwnProperty("comment"))
-    return res.send("missing comment field");
+    return res.send("missing required field comment");
   const _id = req.params.id;
   const comment = req.body.comment;
   bookModel
