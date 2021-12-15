@@ -64,8 +64,8 @@ const addComments = (req, res) => {
         },
         (err, result) => {
           if (err) return res.send("no book exists");
-          const { title, commentcount } = result;
-          res.json({ _id, title, commentcount });
+          const { title, commentcount, comments } = result;
+          res.json({ _id, title, commentcount, comments });
         }
       );
     })
